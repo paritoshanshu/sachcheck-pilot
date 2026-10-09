@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7f4" />
+    <meta name="description" content="A careful first look at claims in social posts and videos, with evidence and sources." />
+    <title>SachCheck — Check the claim, not the noise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="SachCheck home">
+          <span class="brand-mark"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M18 3.5 31 9v8.4c0 8.2-5.4 13-13 15.1C10.4 30.4 5 25.6 5 17.4V9l13-5.5Z"/><path d="m11.7 18.4 4.2 4.1 8.5-9"/></svg></span>
+          <span>Sach<span class="brand-light">Check</span></span>
+        </a>
+        <div class="workspace-label">YOUR WORKSPACE</div>
+        <nav class="side-nav">
+          <a class="nav-item active" href="#home"><span class="nav-icon">⌂</span> New check <span class="nav-shortcut">⌘ K</span></a>
+          <a class="nav-item" href="#history"><span class="nav-icon">◷</span> Check history</a>
+          <a class="nav-item" href="#how"><span class="nav-icon">ⓘ</span> How it works</a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="sidebar-note"><span class="note-icon">✳</span><div><strong>Context matters</strong><p>A claim can be misleading without being entirely false.</p></div></div>
+          <div class="profile"><div class="avatar">P</div><div><strong>Personal workspace</strong><small>Pilot preview</small></div><span class="more">···</span></div>
+        </div>
+      </aside>
+
+      <main class="main" id="home">
+        <header class="topbar"><div class="breadcrumbs">Workspace <span>/</span> <strong>New check</strong></div><div class="top-actions"><span class="pilot-pill"><i></i> PILOT PREVIEW</span><button class="icon-button" aria-label="Help">?</button></div></header>
+        <div class="content">
+          <section class="intro">
+            <div class="eyebrow"><span class="sparkle">✳</span> PAUSE. CHECK. SHARE.</div>
+            <h1>Before you share,<br /><span>get the full story.</span></h1>
+            <p class="intro-copy">Paste a link or claim from a post, reel, or video. We’ll help you separate what’s being said from what the evidence actually shows.</p>
+          </section>
+
+          <section class="check-card" aria-labelledby="check-title">
+            <div class="card-heading"><div><h2 id="check-title">What would you like to check?</h2><p>Start with a public link or paste the claim in your own words.</p></div><span class="step-count">01 <span>/ 02</span></span></div>
+            <div class="tabs" role="tablist" aria-label="Input type">
+              <button class="tab active" id="link-tab" role="tab" aria-selected="true" aria-controls="link-panel"><span>↗</span> Post or video link</button>
+              <button class="tab" id="claim-tab" role="tab" aria-selected="false" aria-controls="claim-panel"><span>☷</span> Paste a claim</button>
+            </div>
+            <div id="link-panel" class="input-panel" role="tabpanel" aria-labelledby="link-tab">
+              <label class="sr-only" for="link-input">Paste a public post or video link</label>
+              <div class="input-wrap"><span class="input-symbol">↗</span><input id="link-input" type="url" placeholder="Paste an Instagram, YouTube, TikTok or article link" autocomplete="url" /><button class="paste-button" type="button" id="paste-button">Paste</button></div>
+              <div class="input-hint"><span class="lock">♧</span> For videos, paste the spoken claim or transcript in the next tab; links alone may not expose video content.</div>
+            </div>
+            <div id="claim-panel" class="input-panel hidden" role="tabpanel" aria-labelledby="claim-tab">
+              <label class="sr-only" for="claim-input">Paste or type the claim</label>
+              <textarea id="claim-input" rows="3" placeholder="For example: “This common kitchen ingredient cures diabetes in 7 days.”"></textarea>
+              <div class="input-hint"><span class="lock">♧</span> Include the exact wording and any useful context.</div>
+            </div>
+            <div class="card-footer"><div class="privacy"><span>◉</span> Your checks stay in this workspace</div><button class="check-button" id="check-button">Check this claim <span>→</span></button></div>
+            <div class="error-message" id="error-message" role="alert"></div>
+          </section>
+
+          <section class="supported" aria-label="Supported content types"><span class="supported-label">MADE FOR THE CONTENT YOU SEE EVERY DAY</span><div class="platforms"><span><b class="ig">◎</b> Instagram</span><span><b class="yt">▶</b> YouTube</span><span><b class="tt">♪</b> TikTok</span><span><b class="fb">f</b> Facebook</span><span class="and-more">and more</span></div></section>
+
+          <section class="result hidden" id="result" aria-live="polite">
+            <div class="result-head"><div><div class="result-label"><span class="result-dot"></span> LIVE CHECK</div><h2>Evidence review</h2></div><button class="close-result" id="close-result" aria-label="Close result">×</button></div>
+            <div class="demo-banner hidden" id="result-note"><span>ⓘ</span><span></span></div>
+            <div class="claim-box"><div class="mini-label">CLAIM CHECKED <span id="claim-type">TEXT</span></div><p id="result-claim"></p></div>
+            <div class="verdict-row"><div class="verdict-icon" id="verdict-icon">?</div><div><div class="verdict-title" id="verdict-title">Checking…</div><p id="verdict-explanation"></p></div><span class="confidence" id="confidence"></span></div>
+            <div class="result-grid"><article class="result-section"><div class="section-title"><span class="section-icon">✳</span><h3>Context</h3></div><p id="corrected-context">Review the linked evidence before sharing.</p></article><article class="result-section"><div class="section-title"><span class="section-icon source-icon">↗</span><h3>Sources</h3></div><div class="source-list" id="source-list"><p class="source-empty">Searching sources…</p></div></article></div>
+            <div class="caution"><span>✳</span><p id="safety-note"><strong>Check the evidence.</strong> Open the source links and consider their date and context.</p></div>
+          </section>
+
+          <footer class="page-footer" id="how"><span>Built for curiosity, designed for care.</span><a href="#how">How SachCheck works <span>↗</span></a><span class="footer-hindi">सच जानें. सोचकर साझा करें.</span></footer>
+        </div>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
